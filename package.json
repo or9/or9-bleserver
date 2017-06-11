@@ -1,0 +1,26 @@
+{
+	"private": true,
+	"name": "or9-bleserver",
+	"version": "0.0.1",
+	"description": "BLE server using bleno",
+	"main": "index.js",
+	"scripts": {
+		"test": "test"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+ssh://git@github.com/or9/or9-bleserver.git"
+	},
+	"keywords": [
+		"BLE",
+		"bluetooth",
+		"server",
+		"IoT"
+	],
+	"author": "Drahman",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/or9/or9-bleserver/issues"
+	},
+	"homepage": "https://github.com/or9/or9-bleserver#readme"
+}
