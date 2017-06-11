@@ -5,7 +5,8 @@
 	"description": "BLE server using bleno",
 	"main": "index.js",
 	"scripts": {
-		"test": "test"
+		"test": "mocha --reporter spec",
+		"watch": "npm test -- -w"
 	},
 	"repository": {
 		"type": "git",
