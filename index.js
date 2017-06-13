@@ -24,7 +24,7 @@ function adStart (error) {
 		value: "ff", // optional {Buffer}
 		descriptors: [ descriptor ]
 	};
-	const characteristic = new bleno.Characteristic(charConfig);
+	const characteristic = new bleno.Characteristic(characteristicConfig);
 	const primaryServiceConfig = {
 		uuid: PRIMARY_SERVICE_UUID,
 		characteristics: [ characteristic ]
