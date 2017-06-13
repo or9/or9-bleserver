@@ -8,6 +8,7 @@ const STATE = {
 	POWERED_ON: "poweredOn"
 };
 const PRIMARY_SERVICE_UUID = "fffffffffffffffffffffffffffffff0";
+const ADVERTISED_NAME = "garbage body rattle balls";
 
 bleno.on(STATE.AD_START, adStart);
 bleno.on(STATE.STATE_CHANGE, stateChanged);
@@ -36,8 +37,10 @@ function adStart (error) {
 function stateChanged (state) {
 	console.log(`BLE state changed ${state}`);
 	if (state === STATE.POWERED_ON) {
-		bleno.startAdvertising("myThing", PRIMARY_SERVICE_UUID);
+		console.info(`Start advertising ${ADVERTISED_NAME}`);
+		bleno.startAdvertising(ADVERTISED_NAME, PRIMARY_SERVICE_UUID);
 	} else {
+		console.info(`Stop advertising. State is not ${STATE.POWERED_ON}`);
 		bleno.stopAdvertising();
 	}
 }
