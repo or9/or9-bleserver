@@ -13,15 +13,15 @@ bleno.on(STATE.AD_START, adStart);
 bleno.on(STATE.STATE_CHANGE, stateChanged);
 
 function adStart (error) {
-	const descriptorConfig = {
+	const descriptorConfig = { 
 		uuid: "2901",
-		value: "someval"
+		value: "some descriptor val"
 	};
 	const descriptor = new bleno.Descriptor(descriptorConfig);
 	const characteristicConfig = {
 		uuid: "fff1",
 		properties: [ "read", "write", "writeWithoutResponse" ],
-		value: "ff", // optional {Buffer}
+		//value: "ff", // optional {Buffer}
 		descriptors: [ descriptor ]
 	};
 	const characteristic = new bleno.Characteristic(characteristicConfig);
@@ -29,7 +29,7 @@ function adStart (error) {
 		uuid: PRIMARY_SERVICE_UUID,
 		characteristics: [ characteristic ]
 	};
-	const services = new bleno.PrimaryService(primaryService);
+	const services = new bleno.PrimaryService(primaryServiceConfig);
 	bleno.setServices(services);
 }
 
