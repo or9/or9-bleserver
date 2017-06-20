@@ -1,8 +1,14 @@
 #!/usr/bin/env node
 "use strict";
 
+const spawn = require("child_process").spawn;
+const spawnSync = require("child_process").spawnSync;
 const bleno = require("bleno");
 const handler = require("./handler")(bleno.Characteristic);
+global.GPIO_PIN = "29";
+
+spawnSync("gpio", ["mode", GPIO_PIN, "out"], { stdio: "inherit" });
+global.pinState = spawnSync("gpio", ["read", GPIO_PIN], { stdio: "inherit" });
 const STATE = {
 	STATE_CHANGE: "stateChange",
 	AD_START: "advertisingStart",

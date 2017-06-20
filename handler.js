@@ -8,6 +8,7 @@
 // 	Char.RESULT_INVALID_ATTRIBUTE_LENGTH
 // 	Char.RESULT_UNLIKELY_ERROR
 
+const spawn = require("child_process").spawn;
 var Char;
 
 module.exports = (BlenoCharacteristic) => {
@@ -30,6 +31,8 @@ function onReadRequest (offset, callback) {
 
 function onWriteRequest (data, offset, withoutResponse, callback) {
 	console.log(`#onWriteRequest \n\t${data} \n\t${offset} \n\t${withoutResponse} \n\t${callback}`);
+	global.pinState = global.pinState.toString() === "1"? "0": "1";
+	spawn("gpio", ["write", global.GPIO_PIN, global.pinState], { stdio: "inherit" });
 }
 
 function onSubscribe (maxValueSize, updateValueCallback) {
