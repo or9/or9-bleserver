@@ -9,6 +9,7 @@ global.GPIO_PIN = "29";
 
 spawnSync("gpio", ["mode", GPIO_PIN, "out"], { stdio: "inherit" });
 global.pinState = spawnSync("gpio", ["read", GPIO_PIN], { stdio: "inherit" });
+console.info(`Initial pin ${GPIO_PIN} state ${pinState}`);
 const STATE = {
 	STATE_CHANGE: "stateChange",
 	AD_START: "advertisingStart",

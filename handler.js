@@ -32,6 +32,7 @@ function onReadRequest (offset, callback) {
 function onWriteRequest (data, offset, withoutResponse, callback) {
 	console.log(`#onWriteRequest \n\t${data} \n\t${offset} \n\t${withoutResponse} \n\t${callback}`);
 	global.pinState = global.pinState.toString() === "1"? "0": "1";
+	console.info(`Toggled pin state to ${pinState}`);
 	spawn("gpio", ["write", global.GPIO_PIN, global.pinState], { stdio: "inherit" });
 }
 
