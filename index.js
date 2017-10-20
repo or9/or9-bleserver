@@ -16,7 +16,6 @@ spawnSync("gpio", ["mode", GPIO_PIN.SWITCH, "out"], { stdio: "inherit" });
 const initialSwitchState = PIN_STATE.SWITCH;
 const initialDoorState = PIN_STATE.isDoorOpen;
 
-console.log("ahhhhyyyyyy", spawnSync("gpio", ["read", SWITCH], { stdio: "pipe" }).stdout.toString());
 console.info(`Initial pin ${SWITCH} state ${PIN_STATE.SWITCH}`);
 console.info(`Initial door state ${SENSOR} state ${PIN_STATE.SENSOR}`);
 
