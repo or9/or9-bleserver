@@ -1,15 +1,25 @@
 #!/usr/bin/env node
 "use strict";
+// @flow
 
-const spawn = require("child_process").spawn;
-const spawnSync = require("child_process").spawnSync;
+const { spawnSync } = require("child_process");
 const bleno = require("bleno");
 const handler = require("./handler")(bleno.Characteristic);
-global.GPIO_PIN = "29";
+const PIN_STATE = require("./api.pin");
+const SWITCH = "29";
+const SENSOR = "27";
+global.GPIO_PIN = { SWITCH, SENSOR };
 
-spawnSync("gpio", ["mode", GPIO_PIN, "out"], { stdio: "inherit" });
-global.pinState = spawnSync("gpio", ["read", GPIO_PIN], { stdio: "inherit" });
-console.info(`Initial pin ${GPIO_PIN} state ${pinState}`);
+// Toggle switch (pin 29) mode to out
+spawnSync("gpio", ["mode", SWITCH, "out"], { stdio: "inherit" });
+
+// Read initial pin states
+const initialSwitchState = PIN_STATE.SWITCH;
+const initialDoorState = PIN_STATE.isDoorOpen;
+
+console.info(`Initial pin ${SWITCH} state ${PIN_STATE.SWITCH}`);
+console.info(`Initial door state ${SENSOR} state ${PIN_STATE.SENSOR}`);
+
 const STATE = {
 	STATE_CHANGE: "stateChange",
 	AD_START: "advertisingStart",
@@ -89,3 +99,4 @@ function stateChanged (state) {
 		bleno.stopAdvertising();
 	}
 }
+
