@@ -5,18 +5,18 @@
 const { spawnSync } = require("child_process");
 const bleno = require("bleno");
 const handler = require("./handler")(bleno.Characteristic);
-const PIN_STATE = require("./api.pin");
-const SWITCH = "29";
-const SENSOR = "27";
+const { PIN_STATE } = require("./api");
+const { SWITCH, SENSOR } = require("./const");
 global.GPIO_PIN = { SWITCH, SENSOR };
 
 // Toggle switch (pin 29) mode to out
-spawnSync("gpio", ["mode", SWITCH, "out"], { stdio: "inherit" });
+spawnSync("gpio", ["mode", GPIO_PIN.SWITCH, "out"], { stdio: "inherit" });
 
 // Read initial pin states
 const initialSwitchState = PIN_STATE.SWITCH;
 const initialDoorState = PIN_STATE.isDoorOpen;
 
+console.log("ahhhhyyyyyy", spawnSync("gpio", ["read", SWITCH], { stdio: "pipe" }).stdout.toString());
 console.info(`Initial pin ${SWITCH} state ${PIN_STATE.SWITCH}`);
 console.info(`Initial door state ${SENSOR} state ${PIN_STATE.SENSOR}`);
 

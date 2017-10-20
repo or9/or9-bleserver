@@ -9,7 +9,7 @@
 // 	Char.RESULT_UNLIKELY_ERROR
 
 const { spawn } = require("child_process");
-const PIN_STATE = require("./api.pin");
+const PIN_STATE = require("./api");
 var Char;
 
 module.exports = (BlenoCharacteristic) => {
