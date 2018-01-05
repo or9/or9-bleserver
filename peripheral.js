@@ -10,7 +10,9 @@ const { SWITCH,
 	SENSOR, 
 	BLENO_STATE, 
 	PRIMARY_SERVICE_UUID, 
-	ADVERTISED_NAME } = require("./const");
+	ADVERTISED_NAME
+} = require("./const/bleno");
+
 global.GPIO_PIN = { SWITCH, SENSOR };
 
 // Toggle switch (pin 29) mode to out
